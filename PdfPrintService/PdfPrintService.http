@@ -1,0 +1,6 @@
+@PdfPrintService_HostAddress = http://localhost:5201
+
+GET {{PdfPrintService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
