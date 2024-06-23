@@ -23,13 +23,17 @@ To celé prosím provést v GitHub
 [Raspberry Pi 4 Model B - 4GB RAM] (https://rpishop.cz/raspberry-pi-4/1598-raspberry-pi-4-model-b-4gb-ram.html)
 
 
-(![realization.jpg](https://github.com/ondrouchd/FremachPrinter/blob/master/realization.jpg))
+![realization.jpg]https://github.com/ondrouchd/FremachPrinter/blob/master/realization.jpg
 
 ## PdfPrintService
-(![Web API](https://github.com/ondrouchd/FremachPrinter/blob/master/PdfPrintService.jpg))
+![Web API](https://github.com/ondrouchd/FremachPrinter/blob/master/PdfPrintService.jpg)
+
+![Printers](https://github.com/ondrouchd/FremachPrinter/blob/master/printers.jpg)
+
+![Vstrikovna](https://github.com/ondrouchd/FremachPrinter/blob/master/vstrikovna.jpg)
 
 ## fremach-printer-client
-TODO
+![React Client](https://github.com/ondrouchd/FremachPrinter/blob/master/client.jpg)
 
 
 
