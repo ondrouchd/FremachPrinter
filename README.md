@@ -34,6 +34,7 @@ Folders where are unprocessed PDF files
 
 ### Xerox-vstrikovna
 Here is a one PDF to print. Once the PDF is printed, Xerox automatically remove that file.
+
 ![Vstrikovna](https://github.com/ondrouchd/FremachPrinter/blob/master/vstrikovna.jpg)
 
 ## fremach-printer-client
