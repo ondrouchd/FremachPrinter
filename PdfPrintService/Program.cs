@@ -4,8 +4,9 @@ using System.IO.Compression;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
@@ -39,7 +40,23 @@ app.MapPost("print", async ([FromBody] PdfRequest request) =>
 
     byte[] pdfBytes = Convert.FromBase64String(request.PdfBase64);
 
-    string filePath = @$"c:\Users\david\source\repos\FremachPrinter\PdfPrintServiceData\{request.PrinterName}\{Guid.NewGuid()}.pdf";
+    var configuration = app.Services.GetRequiredService<IConfiguration>();
+    string filePath = string.Empty; 
+
+    switch (request.PrinterName)
+    {
+        case "Xerox-vstrikovna":
+            filePath = $"{configuration["Printers:vstrikovna"]}\\{ request.PrinterName}\\{ Guid.NewGuid()}.pdf";
+            break;
+        case "Xerox-lakovna":
+            filePath = $"{configuration["Printers:lakovna"]}\\{request.PrinterName}\\{Guid.NewGuid()}.pdf";
+            break;
+        case "Xerox-montaz":
+            filePath = $"{configuration["Printers:montaz"]}\\{request.PrinterName}\\{Guid.NewGuid()}.pdf";
+            break;
+        default:
+            break;
+    }
 
     await File.WriteAllBytesAsync(filePath, pdfBytes);
 
