@@ -22,17 +22,22 @@ To celé prosím provést v GitHub
 ### Practical example of implementation with Raspberry PI 4
 [Raspberry Pi 4 Model B - 4GB RAM] (https://rpishop.cz/raspberry-pi-4/1598-raspberry-pi-4-model-b-4gb-ram.html)
 
-
-![realization.jpg]https://github.com/ondrouchd/FremachPrinter/blob/master/realization.jpg
+![Realization]https://github.com/ondrouchd/FremachPrinter/blob/master/realization.jpg
 
 ## PdfPrintService
+### Web API
 ![Web API](https://github.com/ondrouchd/FremachPrinter/blob/master/PdfPrintService.jpg)
 
+### Printers
+Folders where are unprocessed PDF files
 ![Printers](https://github.com/ondrouchd/FremachPrinter/blob/master/printers.jpg)
 
+### Xerox-vstrikovna
+Here is a one PDF to print. Once the PDF is printed, Xerox automatically remove that file.
 ![Vstrikovna](https://github.com/ondrouchd/FremachPrinter/blob/master/vstrikovna.jpg)
 
 ## fremach-printer-client
+### Look and feel
 ![React Client](https://github.com/ondrouchd/FremachPrinter/blob/master/client.jpg)
 
 
