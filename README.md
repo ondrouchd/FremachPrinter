@@ -22,7 +22,7 @@ To celé prosím provést v GitHub
 ### Practical example of implementation with Raspberry PI 4
 [Raspberry Pi 4 Model B - 4GB RAM] (https://rpishop.cz/raspberry-pi-4/1598-raspberry-pi-4-model-b-4gb-ram.html)
 
-<img src="https://github.com/ondrouchd/FremachPrinter/blob/master/realization.jpg" width="487" height="867">
+<img src="https://github.com/ondrouchd/FremachPrinter/blob/master/realization.jpg" width="244" height="434">
 
 ## PdfPrintService
 ### Web API
