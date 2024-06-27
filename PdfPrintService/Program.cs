@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PdfPrintService;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.IO.Compression;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
@@ -59,6 +64,53 @@ app.MapPost("print", async ([FromBody] PdfRequest request) =>
     }
 
     await File.WriteAllBytesAsync(filePath, pdfBytes);
+
+    // Direct printing
+    string printerName = @"\\NetworkPrinterNameOrIPAddress";
+
+    // Read PDF document
+    using (PdfDocument document = PdfReader.Open(filePath, PdfDocumentOpenMode.Import))
+    {
+        // Print document
+        using (PrintDocument printDocument = new PrintDocument())
+        {
+            // Set print document
+            printDocument.PrinterSettings.PrinterName = printerName;
+
+            // Set handler for print page
+            printDocument.PrintPage += (sender, e) =>
+            {
+                PdfPage page = document.Pages[e.PageSettings.PrinterSettings.FromPage];
+
+                // Create bitmap for print
+                using (Bitmap bitmap = new Bitmap((int)page.Width.Point, (int)page.Height.Point))
+                {
+                   // Print PDF page to bitmap
+                   using (var gfx = Graphics.FromImage(bitmap))
+                   {
+                       var xImage = XImage.FromGdiPlusImage(bitmap);
+                        using (var xgr = XGraphics.FromGraphics(gfx, new XSize(page.Width.Point, page.Height.Point)))
+                        {
+                            xgr.DrawImage(xImage, 0, 0, page.Width.Point, page.Height.Point);
+                        }
+                   }
+
+                   // Print bitmap to printer
+                   e.Graphics.DrawImage(bitmap, e.PageBounds);
+                }
+            };
+
+            // Check printer availability
+            if (printDocument.PrinterSettings.IsValid)
+            {
+                printDocument.Print();
+            }
+            else
+            {
+                Console.WriteLine("Printer is not available");
+            }
+        }
+    }
 
     return Results.Ok(new { FilePath = filePath, PdfBase64 = request.PdfBase64 });
 })
